@@ -20,11 +20,55 @@ public class EnvironmentalDataController : ControllerBase
     [HttpGet(Name = "GetEnvironmentalData")]
     public async Task<ActionResult<IEnumerable<EnvironmentalData>>> Get()
     {
-        var users = await repository.GetAll();
-        if (users is null)
+        var environmentalData = await repository.GetAll();
+        if (environmentalData is null)
         {
             return NoContent();
         }
-        return Ok(users);
+        return Ok(environmentalData);
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<EnvironmentalData>> GetById(int id)
+    {
+        var environmentalData = await repository.GetById(id);
+        if (environmentalData is null)
+        {
+            return NotFound();
+        }
+        return Ok(environmentalData);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<EnvironmentalData>> Create(EnvironmentalData environmentalData)
+    {
+        await repository.Create(environmentalData);
+        return CreatedAtAction(nameof(GetById), new { id = environmentalData.Id }, environmentalData);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<EnvironmentalData>> Update(EnvironmentalData environmentalData)
+    {
+        var updatedEnvironmentalData = await repository.Update(environmentalData);
+        if (updatedEnvironmentalData is null)
+        {
+            return NotFound();
+        }
+        return Ok(updatedEnvironmentalData);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteById(int id)
+    {
+        bool environmentalDataDeleted = await repository.DeleteById(id);
+        if (environmentalDataDeleted)
+        {
+            return NoContent();
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 }
