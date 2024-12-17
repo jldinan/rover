@@ -1,10 +1,12 @@
-//using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Api.Interfaces;
+using Api.Repositories;
+using Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-/*builder.Services.AddDbContext<ApiDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();*/
+builder.Services.AddDbContext<ApiDbContext>(options =>  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IEnvironmentalDataRepository, EnvironmentalDataRepositoryEF>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
