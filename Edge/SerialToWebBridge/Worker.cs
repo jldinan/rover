@@ -8,7 +8,7 @@ public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> logger;
     private SerialPort serialPort;
-    private string portName = "COM3";
+    private string portName = "/dev/ttyACM0";
 
     public class EnvironmentalData
     {
