@@ -15,7 +15,8 @@ namespace Api.Migrations
                 name: "EnvironmentalData",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Temperature = table.Column<double>(type: "float", nullable: false),
                     Humidity = table.Column<double>(type: "float", nullable: false)
