@@ -1,4 +1,5 @@
 using System.IO.Ports;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 
@@ -8,19 +9,35 @@ public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> logger;
     private SerialPort serialPort;
-    private string portName = "/dev/ttyACM0";
+    private readonly HttpClient httpClient;
+    private string endpointUrl = "";
+    private string portName = "";
 
     public class EnvironmentalData
     {
-        public required string Id { get; set; }
         public DateTime Timestamp { get; set; }
         public required double Temperature { get; set; }
         public required double Humidity { get; set; }
     }
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(ILogger<Worker> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         this.logger = logger;
+        this.httpClient = httpClientFactory.CreateClient();
+
+        var linuxPort = configuration["SerialPortSettings:LinuxPort"];
+        var windowsPort = configuration["SerialPortSettings:WindowsPort"];
+        var endpointUrl = configuration["WebApiSettings:EndpointUrl"];
+        this.endpointUrl = endpointUrl ?? string.Empty;
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            portName = linuxPort ?? "/dev/ttyACM0";
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            portName = windowsPort ?? "COM3";
+        }
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -64,6 +81,7 @@ public class Worker : BackgroundService
                             serialData.Timestamp = DateTime.Now;
                             string serializedData = JsonSerializer.Serialize(serialData, jsonSerializerOptions);
                             Console.WriteLine($"Deserialized Data: {serializedData}");
+                            await PostDataAsync(serialData, stoppingToken);
                         }
                         else
                         {
@@ -87,6 +105,28 @@ public class Worker : BackgroundService
         {
             serialPort?.Close();
             logger.LogInformation("Serial port closed.");
+        }
+    }
+
+    private async Task PostDataAsync(EnvironmentalData data, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var jsonContent = new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(endpointUrl, jsonContent, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                logger.LogInformation("Data posted successfully.");
+            }
+            else
+            {
+                logger.LogWarning($"Failed to post data. Status code: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error posting data to the endpoint.");
         }
     }
 
