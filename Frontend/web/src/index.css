@@ -9,11 +9,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
-  margin: 0;
   display: flex;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
 }
