@@ -12,13 +12,48 @@ function App() {
           <div id="video-feed">
 
           </div>
-          <div id="lower-controls">
+          <div id="data-stats">
 
+            <div className="stats-card-wrapper">
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+              <div className="stats-card">
+
+              </div>
+            </div>
+
+            
           </div>
         </div>
 
         <div id="right-panel">
-          
+          <div id="rover-controls">
+
+          </div>
+          <div id="rover-direction-controls">
+
+          </div>
+
+
         </div>
         
   
