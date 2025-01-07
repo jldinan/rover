@@ -26,6 +26,12 @@ namespace Api.Repositories
             return await context.EnvironmentalData.FindAsync(id);
         }
 
+        public async Task<EnvironmentalData?> GetLatest()
+        {
+            var latestTimestamp = await context.EnvironmentalData.MaxAsync(data => data.Timestamp);
+            return await context.EnvironmentalData.FirstOrDefaultAsync(data => data.Timestamp == latestTimestamp);
+        }
+
         public async Task<EnvironmentalData> Create(EnvironmentalData user)
         {
             context.EnvironmentalData.Add(user);

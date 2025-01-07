@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/environmental-data")]
 public class EnvironmentalDataController : ControllerBase
 {
     private readonly ILogger<EnvironmentalDataController> logger;
@@ -38,6 +38,17 @@ public class EnvironmentalDataController : ControllerBase
             return NotFound();
         }
         return Ok(environmentalData);
+    }
+
+    [HttpGet("latest", Name = "GetLatestEnvironmentalData")]
+    public async Task<ActionResult<EnvironmentalData>> GetLatest()
+    {
+        var latestData = await repository.GetLatest();
+        if (latestData is null)
+        {
+            return NoContent();
+        }
+        return Ok(latestData);
     }
 
     [HttpPost]

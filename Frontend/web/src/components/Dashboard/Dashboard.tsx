@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { EnvironmentalData, getLatestEnvironmentalData } from '../../services/environmentData.service';
 import AppHeader from '../AppHeader/AppHeader';
 import RoverControls from '../RoverControls/RoverControls';
 import RoverData from '../RoverData/RoverData';
@@ -6,6 +8,21 @@ import VideoFeed from '../VideoFeed/VideoFeed';
 import './Dashboard.css'
 
 const Dashboard = () => {
+
+  const [environmentalData, setEnvironmentalData] = useState<EnvironmentalData>();
+
+  useEffect(() => {
+    const fetchEnvironmentalData = async () => {
+      try {
+        const data = await getLatestEnvironmentalData();
+        setEnvironmentalData(data);
+      } catch (err) {
+        //TODO: handle error state.
+      }
+    };
+    fetchEnvironmentalData();
+  }, []);
+
   return (
     <>
       <div id="dashboard">
@@ -14,7 +31,7 @@ const Dashboard = () => {
         <div id="connected-indicator-status">Connecting to server...</div>
         <div id="left-panel">
           <VideoFeed/>
-          <RoverData/>          
+          <RoverData environmentalData={environmentalData} />          
         </div>
         <div id="right-panel">
           <AppHeader/>

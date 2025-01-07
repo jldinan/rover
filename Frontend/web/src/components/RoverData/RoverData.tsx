@@ -1,19 +1,22 @@
+import { EnvironmentalData } from '../../services/environmentData.service';
 import './RoverData.css'
 
-const RoverData = () => {
+interface RoverDataProps {
+  environmentalData: EnvironmentalData;
+}
+
+const RoverData: React.FC<RoverDataProps> = ({ environmentalData }) => {  
   return (
     <>
       <div id="data-stats">
-
         <div className="stats-card-wrapper">
           <div className="stats-card">
             <div className="label">Temperature</div>
-            <div className="value">25.2<span className="unit">&deg;C</span></div>
-
+            <div className="value">{environmentalData?.temperature ?? <span className="placeholder">--</span>}<span className="unit">&deg;C</span></div>
           </div>
           <div className="stats-card">
             <div className="label">Humidity</div>
-            <div className="value">70.33<span className="unit">% RH</span></div>
+            <div className="value">{environmentalData?.humidity ?? <span className="placeholder">--</span>}<span className="unit">% RH</span></div>
           </div>
           <div className="stats-card">
             <div className="label">Air Pressure</div>
@@ -40,8 +43,6 @@ const RoverData = () => {
             <div className="value good">88<span className="unit">%</span></div>
           </div>
         </div>
-
-
       </div>     
     </>
   )
