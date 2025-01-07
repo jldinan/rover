@@ -14,38 +14,38 @@
   flex-direction: column;
 }
 
-  .stats-card:last-child {
-    border-right: none;
-  }
+.stats-card:last-child {
+  border-right: none;
+}
 
-  .stats-card .label {
-    font-family: 'FuturaDemiHeavy';
-    text-align: center;
-    padding: 10px;
-    text-transform: uppercase;
-    height: 30%;
-    font-size: 20px;
-  }
+.stats-card .label {
+  font-family: 'FuturaDemiHeavy';
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+  height: 30%;
+  font-size: 20px;
+}
 
-  .stats-card .value {
-    font-family: 'FuturaDemiHeavy';
-    text-align: center;
-    padding: 10px;
-    text-transform: uppercase;
-    height: 70%;
-    font-size: 35px;
-    color: #75c7d5;
-  }
+.stats-card .value {
+  font-family: 'FuturaDemiHeavy';
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+  height: 70%;
+  font-size: 35px;
+  color: #75c7d5;
+}
 
-    .stats-card .value .unit {
-      font-size: 20px;
-      margin-left: 4px;
-    }
+.stats-card .value .unit {
+  font-size: 20px;
+  margin-left: 4px;
+}
 
-    .stats-card .value.bad {
-      color: #fc9696;
-    }
+.stats-card .value.bad {
+  color: #fc9696;
+}
 
-    .stats-card .value.good {
-      color: #75d582;
-    }
+.stats-card .value.good {
+  color: #75d582;
+}

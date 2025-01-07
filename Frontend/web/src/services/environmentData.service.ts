@@ -1,11 +1,6 @@
-const API_BASE_URL = '/api/environmental-data';
+import { EnvironmentalData } from "../models/environmentalData";
 
-export interface EnvironmentalData {
-  id: number;
-  timestamp: Date;
-  temperature: number;
-  humidity: number;
-}
+const API_BASE_URL = '/api/environmental-data';
 
 export const getLatestEnvironmentalData = async (): Promise<EnvironmentalData> => {
   const response = await fetch(`${API_BASE_URL}/latest`);

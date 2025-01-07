@@ -1,11 +1,13 @@
-import { EnvironmentalData } from '../../services/environmentData.service';
+import { EnvironmentalData } from '../../models/environmentalData';
+import { TelemetryData } from '../../models/telemetryData';
 import './RoverData.css'
 
 interface RoverDataProps {
-  environmentalData: EnvironmentalData;
+  environmentalData: EnvironmentalData | undefined;
+  telemetryData: TelemetryData;
 }
 
-const RoverData: React.FC<RoverDataProps> = ({ environmentalData }) => {  
+const RoverData: React.FC<RoverDataProps> = ({ environmentalData, telemetryData }) => {  
   return (
     <>
       <div id="data-stats">
@@ -35,12 +37,12 @@ const RoverData: React.FC<RoverDataProps> = ({ environmentalData }) => {
             <div className="value bad">5.8<span className="unit">CPS</span></div>
           </div>
           <div className="stats-card">
-            <div className="label">Power Levels</div>
-            <div className="value">61.5<span className="unit">%</span></div>
+            <div className="label">Power Levels</div> 
+            <div className="value">{telemetryData?.batteryLevel ?? <span className="placeholder">--</span>}<span className="unit">%</span></div>
           </div>
           <div className="stats-card">
             <div className="label">Signal</div>
-            <div className="value good">88<span className="unit">%</span></div>
+            <div className="value good">{telemetryData?.signalStrength ?? <span className="placeholder">--</span>}<span className="unit">%</span></div>
           </div>
         </div>
       </div>     

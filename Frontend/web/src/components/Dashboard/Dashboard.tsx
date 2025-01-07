@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
-import { EnvironmentalData, getLatestEnvironmentalData } from '../../services/environmentData.service';
+
 import AppHeader from '../AppHeader/AppHeader';
 import RoverControls from '../RoverControls/RoverControls';
 import RoverData from '../RoverData/RoverData';
 import RoverGraphs from '../RoverGraphs/RoverGraphs';
 import VideoFeed from '../VideoFeed/VideoFeed';
+
+import { getLatestEnvironmentalData } from '../../services/environmentData.service';
+import { EnvironmentalData } from '../../models/environmentalData';
+import { TelemetryData } from '../../models/telemetryData';
+
 import './Dashboard.css'
 
 const Dashboard = () => {
 
   const [environmentalData, setEnvironmentalData] = useState<EnvironmentalData>();
+  const telemetryData: TelemetryData = {
+    batteryLevel: 61.5,
+    signalStrength: 77.6,
+  };
 
   useEffect(() => {
     const fetchEnvironmentalData = async () => {
@@ -31,7 +40,7 @@ const Dashboard = () => {
         <div id="connected-indicator-status">Connecting to server...</div>
         <div id="left-panel">
           <VideoFeed/>
-          <RoverData environmentalData={environmentalData} />          
+          <RoverData environmentalData={environmentalData} telemetryData={telemetryData} />          
         </div>
         <div id="right-panel">
           <AppHeader/>
