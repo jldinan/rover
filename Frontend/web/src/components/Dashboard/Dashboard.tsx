@@ -34,20 +34,27 @@ const Dashboard = () => {
 
   return (
     <>
-      <div id="dashboard">
-        <div id="version-number">Version 1.0.0</div>
-        <div id="connected-indicator"></div>
-        <div id="connected-indicator-status">Connecting to server...</div>
-        <div id="left-panel">
-          <VideoFeed/>
-          <RoverData environmentalData={environmentalData} telemetryData={telemetryData} />          
-        </div>
-        <div id="right-panel">
-          <AppHeader/>
-          <RoverGraphs/>
-          <RoverControls/>
-        </div>
-      </div>
+      <main id="dashboard">
+        <section id="version-number">
+          <div>Version 1.0.0</div>
+        </section>
+
+        <section id="connection-status">
+          <div id="connected-indicator" role="status" aria-live="polite"></div>
+          <div id="connected-indicator-status">Connecting to server...</div>
+        </section>
+
+        <section id="left-panel">
+          <VideoFeed />
+          <RoverData environmentalData={environmentalData} telemetryData={telemetryData} />
+        </section>
+
+        <section id="right-panel">
+          <AppHeader />
+          <RoverGraphs />
+          <RoverControls />
+        </section>
+      </main>
     </>
   )
 };
