@@ -13,7 +13,8 @@ import { TelemetryData } from '../../models/telemetryData';
 import './Dashboard.css'
 
 const Dashboard = () => {
-
+  const [error, setError] = useState<boolean>(false);
+  const [status, setStatus] = useState<string | null>(null);
   const [environmentalData, setEnvironmentalData] = useState<EnvironmentalData>();
   const telemetryData: TelemetryData = {
     batteryLevel: 61.5,
@@ -26,7 +27,8 @@ const Dashboard = () => {
         const data = await getLatestEnvironmentalData();
         setEnvironmentalData(data);
       } catch (err) {
-        //TODO: handle error state.
+        setError(true);
+        setStatus("Failed to fetch environmental data.");
       }
     };
     fetchEnvironmentalData();
@@ -34,16 +36,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <main id="dashboard">
-        <section id="version-number">
-          <div>Version 1.0.0</div>
-        </section>
-
-        <section id="connection-status">
-          <div id="connected-indicator" role="status" aria-live="polite"></div>
-          <div id="connected-indicator-status">Connecting to server...</div>
-        </section>
-
+      <main id="dashboard">     
         <section id="left-panel">
           <VideoFeed />
           <RoverData environmentalData={environmentalData} telemetryData={telemetryData} />
@@ -54,6 +47,12 @@ const Dashboard = () => {
           <RoverGraphs />
           <RoverControls />
         </section>
+
+        <footer id="taskbar" className={error ? "error" : ""}>
+          {status && <div className="status-message">{status}</div>}
+          <div id="connected-indicator" role="connection-status" aria-live="polite"></div>
+          <div id="connected-indicator-status">Connecting to server...</div>
+        </footer>
       </main>
     </>
   )
