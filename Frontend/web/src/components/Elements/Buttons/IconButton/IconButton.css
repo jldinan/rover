@@ -1,0 +1,22 @@
+.icon-button {
+  width: 25%;
+  height: 90px;
+  background-color: #2120244a;
+  outline: 0;
+  border: 0;
+  background-size: 80% 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  filter: drop-shadow(2px 4px 6px black);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  filter: drop-shadow(2px 2px 2px #212024);
+}
+
+.icon-button:active {
+  transform: scale(0.98);
+  filter: drop-shadow(2px 2px 2px #212024);
+}
