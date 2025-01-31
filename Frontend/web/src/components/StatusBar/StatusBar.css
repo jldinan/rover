@@ -1,0 +1,52 @@
+#status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background-color: #126fab;
+  width: 100%;
+  padding: 7px;
+  box-sizing: border-box;
+  padding-left: 25px;
+  font-family: 'FuturaDemiLight';
+  font-size: 19px;
+  height: 45px;
+  transition: background-color 0.5s ease-in-out
+}
+
+#status-bar.error {
+  background-color: #bd3534;
+}
+
+#connected-indicator {
+  position: absolute;
+  bottom: 16px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+  background-color: #212024;
+  border-radius: 50%;
+  transition: background-color 0.5s ease-in-out
+}
+
+#connected-indicator.connected {
+  background-color:#16cd16; 
+}
+
+#version-number {
+  position: absolute;
+  bottom: 15px;
+  left: 40px;
+  text-align: right;
+  font-family: 'FuturaDemiLight';
+  font-size: 19px;
+}
+
+#connected-indicator-status {
+  position: absolute;
+  right: 40px;
+  bottom: 10px;
+  text-align: right;
+  font-family: 'FuturaDemiLight';
+  font-size: 19px;
+}
