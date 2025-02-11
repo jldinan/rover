@@ -3,24 +3,19 @@ import './App.css'
 import Dashboard from './components/Dashboard/Dashboard'
 import { Route, Routes } from 'react-router-dom';
 import { AuthenticationGuard } from './auth-guard';
-import Login from './components/Login/Login';
+import LoadingIndicator from './components/Elements/LoadingIndicator/LoadingIndicator';
 
 function App() {
-
   const { isLoading } = useAuth0();
-
   if (isLoading) {
     return (
-      <div className="page-layout">
-        <span>Loading...</span>
-      </div>
+      <LoadingIndicator color="#cbcccc" size="la-3x"/>
     );
   }
 
   return (
     <Routes>
-      <Route path="/" Component={Dashboard} /> 
-      <Route path="/dashboard" Component={Dashboard} /> 
+      <Route path="/" element={<AuthenticationGuard component={Dashboard} />} /> 
    </Routes>
   );  
 }

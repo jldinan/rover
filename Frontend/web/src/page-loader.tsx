@@ -1,11 +1,9 @@
-import React from "react";
+import LoadingIndicator from "./components/Elements/LoadingIndicator/LoadingIndicator";
 
 export const PageLoader: React.FC = () => {
-  const loadingImg: string = "https://cdn.auth0.com/blog/hello-auth0/loader.svg";
-
   return (
-    <div className="loader">
-      <img src={loadingImg} alt="Loading..." />
+    <div className="page-loader">
+      <LoadingIndicator color="#cbcccc" size="la-3x" />
     </div>
   );
 };
