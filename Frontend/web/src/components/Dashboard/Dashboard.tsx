@@ -35,7 +35,7 @@ const Dashboard = () => {
   }, []);
 
   return (    
-    <main id="dashboard">     
+    <main id="dashboard"> 
       <section id="left-panel">
         <VideoFeed />
         <RoverData
