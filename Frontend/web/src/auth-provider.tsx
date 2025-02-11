@@ -8,9 +8,8 @@ type Auth0ProviderWithNavigateProps = {
 
 export const Auth0ProviderWithNavigate = ({ children }: Auth0ProviderWithNavigateProps) => {
   const navigate = useNavigate();
-
-  const domain = "";
-  const clientId = "";
+  const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+  const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const redirectUri = "http://localhost:5173";
 
   const onRedirectCallback = (appState?: { returnTo?: string }) => {
