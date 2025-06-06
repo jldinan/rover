@@ -1,4 +1,4 @@
-import './RoverDataCard.css'
+import classes from './RoverDataCard.module.css'
 
 interface RoverDataCardProps {
   label: string;
@@ -8,16 +8,16 @@ interface RoverDataCardProps {
 
 const RoverDataCard: React.FC<RoverDataCardProps> = ({ label, value, unit }) => {
   return (
-    <div className="stats-card">
-      <div className="label">{label}</div>
-      <div className="value">
+    <div className={`${classes['stats-card']}`}>
+      <div className={`${classes['label']}`}>{label}</div>
+      <div className={`${classes['value']}`}>
         {value !== undefined && value !== null ? (
           <>
             {value}
-            <span className="unit">{unit}</span>
+            <span className={`${classes['unit']}`}>{unit}</span>
           </>
         ) : (
-          <span className="placeholder">--</span>
+          <span className={`${classes['placeholder']}`}>--</span>
         )}
       </div>
     </div>

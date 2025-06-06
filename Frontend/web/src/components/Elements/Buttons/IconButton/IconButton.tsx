@@ -1,4 +1,4 @@
-import './IconButton.css'
+import classes from './IconButton.module.css'
 
 type ButtonType = "forward" | "right" | "left" | "backwards" | "help";
 
@@ -20,7 +20,7 @@ const IconButton: React.FC<IconButtonProps> = ({ type, onClick, width = "25%", h
 
   return (
     <button
-      className={`icon-button ${type}`}
+      className={`${classes['icon-button']}`}
       onClick={onClick}
       style={{
         backgroundImage: `url(${buttonIconMap[type]})`,
