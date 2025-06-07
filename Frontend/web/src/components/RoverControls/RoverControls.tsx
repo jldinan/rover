@@ -1,4 +1,4 @@
-import IconButton from '../Elements/Buttons/IconButton/IconButton';
+import IconButton, { ButtonTypes } from '../Elements/Buttons/IconButton/IconButton';
 import classes from './RoverControls.module.css'
 
 const RoverControls = () => {
@@ -8,10 +8,10 @@ const RoverControls = () => {
   return (
     <>
       <div className={`${classes['rover-direction-controls']}`}>
-        <IconButton type="forward" onClick={() => handleClick("forward")} />
-        <IconButton type="left" onClick={() => handleClick("left")} />
-        <IconButton type="right" onClick={() => handleClick("right")} />
-        <IconButton type="backwards" onClick={() => handleClick("backwards")} />
+        <IconButton type={ButtonTypes.ArrowUp} onClick={() => handleClick("forward")} />
+        <IconButton type={ButtonTypes.ArrowLeft} onClick={() => handleClick("left")} />
+        <IconButton type={ButtonTypes.ArrowRight} onClick={() => handleClick("right")} />
+        <IconButton type={ButtonTypes.ArrowDown} onClick={() => handleClick("backwards")} />
       </div>    
     </>
   )

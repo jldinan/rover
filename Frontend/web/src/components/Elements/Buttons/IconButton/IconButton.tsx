@@ -1,21 +1,29 @@
 import classes from './IconButton.module.css'
 
-type ButtonType = "forward" | "right" | "left" | "backwards" | "help";
+export const ButtonTypes = {
+  ArrowUp: "arrow_up",
+  ArrowRight: "arrow_right",
+  ArrowLeft: "arrow_left",
+  ArrowDown: "arrow_down",
+  Help: "help",
+} as const;
+
+export type ButtonType = typeof ButtonTypes[keyof typeof ButtonTypes];
 
 interface IconButtonProps {
   type: ButtonType;
   onClick: () => void;
   width?: string;
-  height?: string;
+  height?: string; 
 }
 
 const IconButton: React.FC<IconButtonProps> = ({ type, onClick, width = "25%", height = "90px" }) => {
   const buttonIconMap: Record<ButtonType, string> = {
-    forward: 'src/assets/reshot-icon-bold-arrow-up-XUMCA9L6S5.svg',
-    right: 'src/assets/reshot-icon-bold-arrow-right-RB7XW6DC4Z.svg',
-    left: 'src/assets/reshot-icon-bold-arrow-left-TS2DVUZ9WY.svg',
-    backwards: 'src/assets/reshot-icon-bold-arrow-down-KDT9R8EHBC.svg',
-    help: 'src/assets/reshot-icon-question-VM8X47B5JK.svg'
+    arrow_up: 'src/assets/icons/icon-arrow_up.svg',
+    arrow_right: 'src/assets/icons/icon-arrow_right.svg',
+    arrow_left: 'src/assets/icons/icon-arrow_left.svg',
+    arrow_down: 'src/assets/icons/icon-arrow_down.svg',
+    help: 'src/assets/icons/icon-help.svg'
   };
 
   return (
