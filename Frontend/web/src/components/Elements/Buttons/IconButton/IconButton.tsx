@@ -22,6 +22,7 @@ const IconButton: React.FC<IconButtonProps> = ({ type, onClick, width = "25%", h
     <button
       className={`${classes['icon-button']}`}
       onClick={onClick}
+      aria-label={type + " button"}
       style={{
         backgroundImage: `url(${buttonIconMap[type]})`,
         width,
