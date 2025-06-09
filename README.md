@@ -1,4 +1,9 @@
-# Rover
+<div style="background-color: #212024; background-image: url('Frontend/web/public/logo.svg'); background-size: 82%; background-repeat: no-repeat; background-position: center; width: 100%; height: 150px; margin-bottom: 20px;">
+</div>
+
+
+# ROVER
+
 The intention of this project is to create a rover capable of collecting environmental data and being controlled in real-time via a web interface.
 
 The project will utilise Arduino for lower-level sensor, motor, and actuator control, and a Raspberry Pi for video streaming, WebSocket and network connectivity, as well as other high-end video recognition projects.
