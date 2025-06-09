@@ -1,6 +1,4 @@
-<div style="background-color: #212024; background-image: url('Frontend/web/public/logo.svg'); background-size: 82%; background-repeat: no-repeat; background-position: center; width: 100%; height: 150px; margin-bottom: 20px;">
-</div>
-
+<img src="Frontend/web/public/logo.svg" width="200px"/>
 
 # ROVER
 
